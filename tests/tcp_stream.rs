@@ -593,7 +593,10 @@ fn no_events_after_deregister() {
 )]
 #[cfg_attr(target_os = "hurd", ignore = "POLLRDHUP isn't supported on GNU/Hurd")]
 #[cfg_attr(target_os = "solaris", ignore = "POLLRDHUP isn't supported on Solaris")]
-#[cfg_attr(target_os = "nto", ignore = "POLLRDHUP isn't supported on NTO")]
+#[cfg_attr(
+    any(target_os = "nto", target_os = "qnx"),
+    ignore = "POLLRDHUP isn't supported on NTO"
+)]
 fn tcp_shutdown_client_read_close_event() {
     let (mut poll, mut events) = init_with_poll();
     let barrier = Arc::new(Barrier::new(2));
@@ -640,7 +643,8 @@ fn tcp_shutdown_client_read_close_event() {
         target_os = "illumos",
         target_os = "solaris",
         target_os = "linux",
-        target_os = "nto"
+        target_os = "nto",
+        target_os = "qnx"
     ),
     ignore = "fails; client write_closed events are not found"
 )]
@@ -678,7 +682,10 @@ fn tcp_shutdown_client_write_close_event() {
 #[cfg_attr(target_os = "wasi", ignore = "POLLRDHUP isn't supported on WASI")]
 #[cfg_attr(target_os = "hurd", ignore = "POLLRDHUP isn't supported on GNU/Hurd")]
 #[cfg_attr(target_os = "solaris", ignore = "POLLRDHUP isn't supported on Solaris")]
-#[cfg_attr(target_os = "nto", ignore = "POLLRDHUP isn't supported on NTO")]
+#[cfg_attr(
+    any(target_os = "nto", target_os = "qnx"),
+    ignore = "POLLRDHUP isn't supported on NTO"
+)]
 #[cfg_attr(target_os = "cygwin", ignore = "POLLRDHUP isn't supported on Cygwin")]
 fn tcp_shutdown_server_write_close_event() {
     let (mut poll, mut events) = init_with_poll();
@@ -713,7 +720,10 @@ fn tcp_shutdown_server_write_close_event() {
 #[cfg_attr(target_os = "wasi", ignore = "POLLRDHUP isn't supported on WASI")]
 #[cfg_attr(target_os = "hurd", ignore = "POLLRDHUP isn't supported on GNU/Hurd")]
 #[cfg_attr(target_os = "solaris", ignore = "POLLRDHUP isn't supported on Solaris")]
-#[cfg_attr(target_os = "nto", ignore = "POLLRDHUP isn't supported on NTO")]
+#[cfg_attr(
+    any(target_os = "nto", target_os = "qnx"),
+    ignore = "POLLRDHUP isn't supported on NTO"
+)]
 #[cfg_attr(target_os = "cygwin", ignore = "POLLRDHUP isn't supported on Cygwin")]
 fn tcp_reset_close_event() {
     let (mut poll, mut events) = init_with_poll();

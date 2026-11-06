@@ -54,7 +54,12 @@ fn smoke() {
 
 #[test]
 #[cfg_attr(
-    any(target_os = "hurd", target_os = "nto", target_os = "cygwin"),
+    any(
+        target_os = "hurd",
+        target_os = "nto",
+        target_os = "qnx",
+        target_os = "cygwin"
+    ),
     ignore = "Writer fd close events do not trigger POLLHUP on nto and GNU/Hurd targets"
 )]
 fn event_when_sender_is_dropped() {
@@ -96,7 +101,12 @@ fn event_when_sender_is_dropped() {
 
 #[test]
 #[cfg_attr(
-    any(target_os = "hurd", target_os = "nto", target_os = "cygwin"),
+    any(
+        target_os = "hurd",
+        target_os = "nto",
+        target_os = "qnx",
+        target_os = "cygwin"
+    ),
     ignore = "Writer fd close events do not trigger POLLHUP on nto and GNU/Hurd targets"
 )]
 fn event_when_receiver_is_dropped() {
@@ -133,7 +143,12 @@ fn event_when_receiver_is_dropped() {
 
 #[test]
 #[cfg_attr(
-    any(target_os = "hurd", target_os = "nto", target_os = "cygwin"),
+    any(
+        target_os = "hurd",
+        target_os = "nto",
+        target_os = "qnx",
+        target_os = "cygwin"
+    ),
     ignore = "Writer fd close events do not trigger POLLHUP on nto and GNU/Hurd targets"
 )]
 #[cfg_attr(miri, ignore = "Miri doesn't support process spawning")]
